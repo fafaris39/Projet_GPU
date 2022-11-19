@@ -17,8 +17,47 @@ SRR4785341  50k-24h-R1-sample.24h.2 GSM2367368  0.6G
 SRR4785342  50k-24h-R2-sample.24h.2 GSM2367369  0.7G
 SRR4785343  50k-24h-R3-sample.24h.2 GSM2367370  0.6G
 ```
-#Tools required for analysis
+# Tools required for analysis
 * FastQC (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+* Trimmomatic (https://github.com/usadellab/Trimmomatic)
+* Bowtie2 (https://github.com/BenLangmead/bowtie2)
+* Picard (https://github.com/broadinstitute/picard)
 * DeepTools (https://deeptools.readthedocs.io/en/develop/)
-* samtools (http://www.htslib.org/)
-* bedtools (https://bedtools.readthedocs.io/en/latest/)
+* Macs2 (https://github.com/macs3-project/MACS/wiki/Install-macs2)
+* Bedtools (https://bedtools.readthedocs.io/en/latest/)
+* IGV (https://github.com/igvteam/igv)
+# Workflow
+## I. Initial Quality Control (`FastQC`)
+The first step is to check the quality of the reads and the presence of the Nextera adapters at the end of those reads. We have assess the reads by executing the `atac_qc_init.slurm` script.
+
+## II. Trimming (`Trimmomatic`)
+As with all next generation sequencing data analyses, we checked the quality of the raw RNA-seq files with FastQC.Low quality bases, adapter sequences and short reads were trimmed with __Trimmomatic__.
+The Nextera adapter sequences in below, was used by an Illumina sequencing.
+```
+>PrefixNX/1
+AGATGTGTATAAGAGACAG
+>PrefixNX/2
+AGATGTGTATAAGAGACAG
+>Trans1
+TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG
+>Trans1_rc
+CTGTCTCTTATACACATCTGACGCTGCCGACGA
+>Trans2
+GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG
+>Trans2_rc
+CTGTCTCTTATACACATCTCCGAGCCCACGAGAC
+```
+The trimming can be done by executing the`atac_trim.slurm` script.
+
+## III. Post Trimming Quality Control (`FastQC`)
+Recheck the quality of trimmed reads to ensure trimming can be done with the `atac_qc_post.slurm` script.
+## IV. Mapping (`Bowtie2`)
+Next we map the trimmed reads to tthe mouse reference genome GRCm39. Here, we’ve combined two analysis steps. The first part aligns our trimmed data to the mouse reference genome GRCm39 using __Bowtie2__. The second part converts the output SAM format to BAM, and finally, the BAM files are sorted by coordinates.
+This step can be done by executing the `atac_bowtie2.slurm' script.
+## V. Remove Duplicate Reads (`Picard`)
+Because of the PCR amplification, there might be read duplicates (different reads mapping to exactly the same genomic region) from overamplification of some regions. We will remove them with __Picard MarkDuplicates__. 
+This can be performed by executing the `atac_bowtie2.slurm` script.
+## VI. Data Exploration (`DeepTools`)
+## VII. Identification of dna accessibility sites (`Macs2`)
+## VIII. Identification of common and unique dna accessibility sites between conditions (`Bedtools`)
+## IX. IVisualisation with IGV tool (`IGV`)
