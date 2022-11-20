@@ -58,6 +58,21 @@ This step can be done by executing the `atac_bowtie2.slurm' script.
 Because of the PCR amplification, there might be read duplicates (different reads mapping to exactly the same genomic region) from overamplification of some regions. We will remove them with __Picard MarkDuplicates__. 
 This can be performed by executing the `atac_bowtie2.slurm` script.
 ## VI. Data Exploration (`DeepTools`)
+We use the __DeepTools__ to explore data. we will here make:
+* PCAplot.  
+* Two PlotCorrelation (heatmap,scatterplot) with two differents methods (spearman, pearson).
+* PlotCoverage to assess the sequencing depth of each sample.
+* bamPEFragmentSize to calculates the fragment sizes for read pairs given a BAM file from paired-end sequencing.
+
+This step was performed by executing the `atac_deeptools.slurm` script.
+
 ## VII. Identification of dna accessibility sites (`Macs2`)
+To find regions corresponding to potential open chromatin, we want to identify regions where reads have piled up (peaks) greater than the background read coverage. The tool which is used is __macs2__ .
+This step can be done by executing the `atac_macs2.slurm`script.
+
 ## VIII. Identification of common and unique dna accessibility sites between conditions (`Bedtools`)
+Next, we want to identify commons and uniques region between two cell stages. For that the __bedtools intersect__ tool it used.
+This was performed by executing the `atac_bedtools.slurm` script.
+
 ## IX. IVisualisation with IGV tool (`IGV`)
+We use the __IGV__ tool to visualise peaks between conditions.
