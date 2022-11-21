@@ -71,7 +71,7 @@ To find regions corresponding to potential open chromatin, we want to identify r
 This step can be done by executing the `atac_macs2.slurm`script.
 
 ## VIII. Identification of common and unique dna accessibility sites between conditions (`Bedtools`)
-Next, we want to identify commons and uniques region between two cell stages. For that the __bedtools intersect__ tool it used.
+Next, we want to identify commons and uniques region between two cell stages. For this reason __bedtools intersect__ tool it used.
 This was performed by executing the `atac_bedtools.slurm` script.
 
 ## IX. IVisualisation with IGV tool (`IGV`)
