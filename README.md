@@ -53,7 +53,7 @@ The trimming can be done by executing the`atac_trim.slurm` script.
 Recheck the quality of trimmed reads to ensure trimming can be done with the `atac_qc_post.slurm` script.
 ## IV. Mapping (`Bowtie2`)
 Next we map the trimmed reads to tthe mouse reference genome GRCm39. Here, we’ve combined two analysis steps. The first part aligns our trimmed data to the mouse reference genome GRCm39 using __Bowtie2__. The second part converts the output SAM format to BAM, and finally, the BAM files are sorted by coordinates.
-This step can be done by executing the `atac_bowtie2.slurm' script.
+This step can be done by executing the `atac_bowtie2.slurm` script.
 ## V. Remove Duplicates Reads (`Picard`)
 Because of the PCR amplification, there might be read duplicates (different reads mapping to exactly the same genomic region) from overamplification of some regions. We will remove them with __Picard MarkDuplicates__. 
 This can be performed by executing the `atac_bowtie2.slurm` script.
