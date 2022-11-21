@@ -76,3 +76,7 @@ This was performed by executing the `atac_bedtools.slurm` script.
 
 ## IX. IVisualisation with IGV tool (`IGV`)
 We use the __IGV__ tool to visualise peaks between conditions.
+
+## Workflow file : atac_workflow.slurm
+Launching workflow file by executing atac_workflow.slurm in main directory.
+All output will be found in "$HOME"/results/atacseq.
