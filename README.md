@@ -56,7 +56,7 @@ Next we map the trimmed reads to tthe mouse reference genome GRCm39. Here, we’
 This step can be done by executing the `atac_bowtie2.slurm` script.
 ## V. Remove Duplicates Reads (`Picard`)
 Because of the PCR amplification, there might be read duplicates (different reads mapping to exactly the same genomic region) from overamplification of some regions. We will remove them with __Picard MarkDuplicates__. 
-This can be performed by executing the `atac_bowtie2.slurm` script.
+This can be performed by executing the `atac_picard.slurm` script.
 ## VI. Data Exploration (`DeepTools`)
 We use the __DeepTools__ to explore data. we will here make:
 * PCAplot.  
