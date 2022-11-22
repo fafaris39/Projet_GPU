@@ -74,7 +74,7 @@ This step can be done by executing the `atac_macs2.slurm`script.
 Next, we want to identify commons and uniques region between two cell stages. For this reason __bedtools intersect__ tool it used.
 This was performed by executing the `atac_bedtools.slurm` script.
 
-## IX. IVisualisation with IGV tool (`IGV`)
+## IX. Visualisation with IGV tool (`IGV`)
 We use the __IGV__ tool to visualise peaks between conditions.
 
 ## Workflow file : atac_workflow.slurm
